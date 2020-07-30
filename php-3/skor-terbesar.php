@@ -1,15 +1,33 @@
 <?php
 function skor_terbesar($arr){
 //kode di sini
-  $Laravel=array();
-  $ReactNative=array();
-  $ReactJs=array();
+  $Laravel=[];
+  $ReactNative=[];
+  $ReactJs=[];
+  $hasil=[];
 
-  for($i=0;$i<=count($skor)-1; $i++){
-    for($j=0;$j<=2;$j++){
-      if($skor[$i][1]==Laravel && $skor[$i][1] == $skor[$i+1][1])
+  foreach($arr as $key => $row){
+    $nilai [$key] = $row['nilai'];
+    $kelas [$key] = $row['kelas'];
+  }
+
+  array_multisort($kelas, SORT_DESC, $nilai, SORT_DESC, $arr); //sorting array
+
+  for($i=0;$i<=count($arr)-1; $i++){
+    if($arr[$i]['kelas'] == 'React Native'){
+      $ReactNative[]=$arr[$i];
+    }else if($arr[$i]['kelas'] == 'React JS'){
+      $ReactJs[]=$arr[$i];
+    }else if($arr[$i]['kelas'] == 'Laravel'){
+      $Laravel[]=$arr[$i];
     }
   }
+  
+  $hasil[]=$ReactNative[0];
+  $hasil[]=$ReactJs[0];
+  $hasil[]=$Laravel[0];
+
+  return $hasil;
 
 }
 
@@ -42,6 +60,7 @@ $skor = [
   ],
 ];
 
+echo "<pre>";
 print_r(skor_terbesar($skor));
 /* OUTPUT
   Array (
