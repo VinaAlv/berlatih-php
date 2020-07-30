@@ -5,7 +5,12 @@ function papan_catur($angka) {
 for($i=1; $i<=$angka; $i++){
     for($j=1; $j<=$angka; $j++){
         if($i%2==0 && $j<$angka){
-            echo "&nbsp # ";
+            if($j==1){
+                echo "&nbsp # &nbsp";
+            }else{
+                echo "# &nbsp";
+            }
+            
         }else if($i%2==1){
             echo "# &nbsp";
         }
